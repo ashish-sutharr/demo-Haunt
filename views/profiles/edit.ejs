@@ -1,0 +1,12 @@
+<% layout('/layouts/boilerplate.ejs') -%> 
+
+<body>
+    <form method="POST" action="/profile/<%=userData._id%>/edit?_method=PUT">
+        <input type="text" name="profile[name]" placeholder="Name" value="<%=userData.name%>"> <br><br>
+        <input type="text" name="profile[username]" placeholder="Username" value="<%=userData.username%>"> <br><br>
+        <textarea  name="profile[bio]" id="" placeholder="Enter you Bio"  cols="30" rows="5"><%=userData.bio%></textarea> <br><br>
+        <img src="<%=userData.profilePic%>" width="100px" alt=""> <br><br>
+        <input type="text" name="profile[profilePic]" placeholder="Profile Image" value="<%=userData.profilePic%>"> <br><br>
+        <button class="btn btn-success">Update</button>
+    </form>
+</body>

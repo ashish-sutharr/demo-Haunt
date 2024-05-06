@@ -1,0 +1,64 @@
+<% layout('/layouts/boilerplate.ejs') -%>
+
+
+
+<style>
+  #ProfilePic{
+    width: 150px;
+    height: 150px;
+    border-radius: 5rem;
+    border: 2px red solid;
+    padding: 0.2rem;
+  }
+  .box{
+    width: 300px;
+    height: 200px;
+  }
+
+</style>
+<body>
+    
+
+    <div class="container p-4">
+        <div class=" d-flex justify-content-center">
+          <div class="col-md-3">
+            <div id="ProfilePic" style="
+                background-image: url(<%=userData.profilePic%>);
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+              "></div>
+          </div>
+          <div class="col-md-7">
+            <div class="d-flex gap-3 align-items-center">
+                <h5><%= userData.username %></h5>
+                <a class="btn bg-primary text-white" href="/profile/<%=userData._id%>/edit">Edit</a>
+                
+            </div>
+            <div class="d-flex gap-4 align-items-center">
+                <p><b>1,048</b> posts</p>
+                <p><b>1,048</b> followers</p>
+                <p><b>1,048</b> following</p>
+            </div>
+            <p><b><%=userData.name%></b> <%=userData.bio%>
+            
+            </p>
+            <a href="#">Link clickable</a>
+          </div>
+        </div>
+      </div>
+      <div class="container border-top mt-5">
+            <div class="row m-3">
+                <%for(post of userPosts.posts) {%>
+                  <a class="box bg-secondary m-3" href="/posts/<%=post._id%>" 
+                    style="
+                    background-image: url(<%=post.image.url%>);
+                    background-position: center;
+                    background-size: cover;
+                      "></a>
+                <%}%>
+                
+            </div>
+      </div>
+
+</body>

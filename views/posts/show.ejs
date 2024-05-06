@@ -1,0 +1,274 @@
+<% layout('/layouts/boilerplate.ejs') -%> 
+
+<style>
+    .post{
+        width: 600px;
+        border: 1rem;
+        background-color: white;
+        margin-bottom: 1rem;
+        border-radius: 1.5rem;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+    .postHead{
+        display: flex;
+        position: relative;
+        justify-content:flex-start;
+        align-items: center;
+        width: 100%;
+        height: 50px;
+        margin: 1rem 0;
+    }
+    .postHead .img{
+        width: 40px;
+        height: 40px;
+        border-radius: 24px;
+        background-color: white;
+        margin-left: 1rem;
+    }
+    .postHead .names{
+        margin-left: 1rem;
+    }
+    .postHead .postName{
+        font-weight: 500;
+        font-size: 1.1rem;
+        position: absolute;
+        top: 5px;
+    }
+    .postHead .postusername{
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+    #msg{
+        position: absolute;
+        right: 1rem;
+        text-decoration: none;
+        font-size: 1.3rem;
+    }
+    .postImg{
+        padding:0 1rem  ;
+    }
+    .postImg img{
+        max-width: 570px;
+        height: auto ;
+        border-radius: 1.5rem;
+    }
+    .postDes{
+        padding: 0  1rem;
+    }
+    .postEngage{
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+    }
+    .postEngage a{
+        color: black;
+        font-size: 1.3rem;
+        padding: 0.4rem;
+        background-color: white;
+        border-radius: 50px;
+    }
+    .socialIcons a{
+        text-decoration: none;
+        color: black;
+    }
+    .createPost{ 
+        width: 600px;
+        padding: 1rem;
+    }
+    .createPost label{
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+    .des{
+        width: 100%;
+        height: 40px;
+        border-radius: 25px;
+        margin: 1rem 0;
+        padding-left: 1rem;
+    }
+    .newButton{
+        display: flex;
+        width: 500px;
+        justify-content: center;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .newButton{
+        padding: 0.8rem 2rem;
+        background-color: greenyellow;
+        border-radius: 1.6rem;
+        margin: 1rem 0;
+    }
+    .commentAdd{
+        width: 100%;
+        height: 3rem ;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    .commentAdd form{
+        display: flex;
+
+    }
+    .commentAdd input{
+        width: 90%;
+        border: 1px black solid;
+        outline: none;
+        padding: 0.3rem 1rem;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        background-color: aliceblue;
+    }
+    .commentAdd button{
+        width: 20%;
+        border: 1px black solid;
+        outline: none;
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        background-color: aliceblue;
+        padding-right: 1rem;
+    }
+    .comment{
+        width: 100%;
+        min-height: 50px;
+        padding: 0.4rem 0;
+        display: flex   ;
+    }
+    .comment .img{
+        width: 50px;
+        height: 40px;
+        border-radius: 30px;
+        background-color: aquamarine;
+        margin-left: 1rem;
+        overflow: hidden;
+       
+    }
+    
+    .comntSec{
+        width: 100%;
+        position: relative;
+        top: 0;
+        margin-left: 1rem;
+    }
+    .authorName{
+        font-size: 0.8rem;
+        position: absolute;
+        top: 4px;
+    }
+    .authorComment{
+        font-size: 1rem;
+        font-weight: 500;
+        position: absolute;
+        bottom: 2px;
+    }
+    #dltBtn{
+        color: red;
+        border: none;
+        font-size: 1.2rem;
+        background-color: transparent;
+        margin-right: 1rem;
+    }
+    .socialIcon{
+        text-decoration: none;
+        color: black;
+        font-size: 1.5;
+    }
+
+</style>
+<body>
+    
+
+
+    <div class="container bg-dark rounded-3 p-4">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="<%=postData.image.url%>" alt="Account Image" class="img-fluid rounded-2 m-3">
+            <!-- <div  class="img " style="
+                    background-image: url(<%=postData.owner.profilePic%>);
+                    background-position: center;
+                    background-size: contain;
+                "></div> -->
+          </div>
+          <div class="col-md-6">
+            <div class="card mt-3">
+              <div class="card-body ">
+                <div class="d-flex align-items-center mb-5">
+                    <div style="
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 1.5rem;
+                        background-image: url(<%=postData.owner.profilePic%>);
+                        background-position: center;
+                        background-size: contain;
+                        margin-right: 1rem;
+                    "></div>
+                    <div>
+                        <h5 class="card-title"><%= postData.owner.name %></h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@<%= postData.owner.username %></h6>
+                    </div>
+                    <a id="msg" href="/posts/<%=postData._id%>/edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div style="
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 1.5rem;
+                        background-image: url(<%=postData.owner.profilePic%>);
+                        background-position: center;
+                        background-size: contain;
+                        margin-right: 1rem;
+                    "></div>
+                    <div>
+                        <h6 class="card-subtitle mb-2 text-muted">@<%= postData.owner.username %></h6>
+                    </div>
+                </div>
+                <p class="card-text p-3"><%= postData.description %></p>
+
+                <% if(postData.comments.length > 0 ) { %>
+                    <div class="showComments">
+                        <div class="img"></div>
+                        <% for(cmnt of postData.comments){ %>
+                            <div class="comment">
+                                <div  class="img" style="
+                                        background-image: url(<%=cmnt.author.profilePic%>);
+                                        background-position: center;
+                                        background-size: cover;
+                                        background-repeat: no-repeat;
+                                        background-color: transparent;
+                                "></div>
+                                <div class="comntSec">
+                                  <span class="authorName"><%= cmnt.author.name %></span><br>
+                                  <span class="authorComment"><%= cmnt.comment %></span>
+                                </div>
+                                <form method="POST" action="/posts/<%= postData._id %>/comments/<%= cmnt._id %>?_method=Delete">
+                                    <button id="dltBtn"><i class="fa-regular fa-trash-can"></i></button>
+                                </form>
+                            </div>
+                              
+                        <%}%>
+                    </div>
+    
+                <%}%>
+                <%if(currUser){%>
+                    <div class="commentAdd">
+                        <form action="/posts/<%=postData._id%>/comments" method="POST">
+                            <input name="comment[comment]" type="text" placeholder="Write your comment">
+                            <button>Post</button>
+                        </form>
+                    </div>
+                <%}%>
+                <a class="socialIcon"  id="like-btn" href=""><i  class="fa-solid fa-heart "></i>  <%=postData.likes%></a>
+                <a class="socialIcon" href=""><i class="fa-solid fa-comment "></i> <%= Object.keys(postData.comments).length %></a>
+                <a class="socialIcon" href=""><i class="fa-solid fa-share "></i></a>
+                <%if(!currUser){%>
+                    <p class="mt-5 "><b class="text-primary">Log in</b> to Like or comment.</p>
+                <%}%>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>

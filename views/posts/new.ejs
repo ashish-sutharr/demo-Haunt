@@ -1,0 +1,27 @@
+<!-- <% layout('/layouts/boilerplate.ejs') -%>  -->
+<style>
+    .createPost{
+        width: 100%;
+        height: 100vh;
+    }
+    .createPost button{
+        padding: 0.6rem 1.8rem;
+        border: none;
+        outline: none;
+        border-radius: 1.5rem;
+        background-color: #a7c957;
+        margin: 1rem 0;
+    }
+
+</style>
+<body>
+    <div class="createPost">
+            <form method="POST" action="/posts/new">
+                <label for="description">Write your post</label> <br>
+                <input class="des" type="text" name="post[description]" placeholder="Write something" required> <br>
+                <br>
+                <input type="text" name="post[image.url]" placeholder="enter URL of image" required> <br> <br>
+                <button>Create Post</button>
+            </form>
+        </div>
+</body>

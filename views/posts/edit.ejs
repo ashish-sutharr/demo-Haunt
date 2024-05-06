@@ -1,0 +1,37 @@
+<% layout('/layouts/boilerplate.ejs') -%> 
+
+<style>
+      .createPost{
+        width: 100%;
+        height: 100vh;
+    }
+    .createPost button{
+        padding: 0.6rem 1.8rem;
+        border: none;
+        outline: none;
+        border-radius: 1.5rem;
+        background-color: #a7c957;
+        margin: 1rem 0;
+    }
+    .postusername{
+        font-weight: 600;
+    }
+
+</style>
+<body>
+    
+    <div class="createPost">
+        <form method="POST" action="/posts/<%= postData._id%>?_method=PUT">
+            <h3>Edit your post</h3>
+                <div class="names">
+                   <span class="postName"><%=postData.name%></span><br>
+                   <span class="postusername">@<%=postData.username%></span>
+                </div><br>
+            <input class="des" type="text" value="<%=postData.description%>" name="post[description]" placeholder="Write something" required> <br>
+            <br>
+            <img src="<%=postData.image.url%>" alt="" width="200px" height="100px" > <br><br>
+            <input type="text" name="post[image.url]" value="<%=postData.image.url%>" placeholder="enter URL of image" required> <br> <br>
+            <button>Create Post</button>
+        </form>
+    </div>
+</body>

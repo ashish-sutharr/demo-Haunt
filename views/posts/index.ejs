@@ -1,0 +1,344 @@
+<% layout('/layouts/boilerplate.ejs') -%> 
+<style>
+    .posts{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .post{
+        width: 360px;
+        border: 1rem;
+        background-color: white;
+        margin-bottom: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+    .postHead{
+        display: flex;
+        position: relative;
+        justify-content:flex-start;
+        align-items: center;
+        width: 100%;
+        height: 50px;
+        margin: 0.5rem 0;
+        text-decoration: none;
+        color: white;
+    }
+    .postHead .img{
+        width: 40px;
+        height: 40px;
+        border-radius: 24px;
+        background-color: rgb(140, 140, 140);
+        margin-left: 1rem;
+    }
+    .postHead .names{
+        margin-left: 0.7rem;
+    }
+    .postHead .postName{
+        font-weight: 500;
+        font-size: 1rem;
+        position: absolute;
+        top: 7px;
+    }
+    .postHead .postusername{
+        font-size: 0.7rem;
+        font-weight: 500;
+        position: absolute;
+        bottom: 7px;
+    }
+    #msg{
+        position: absolute;
+        right: 1rem;
+        text-decoration: none;
+    }
+    .postImg{
+        padding:0 1rem  ;
+    }
+    .postImg img{
+        max-width: 350px;
+        max-height: 300px;
+        /* border-radius: 1.5rem; */
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .postDes{
+        padding: 0  1rem;
+    }
+    .postEngage{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .postEngage a{
+        color: black;
+        font-size: 1.3rem;
+        padding: 0.4rem;
+        background-color: white;
+        border-radius: 50px;
+    }
+    .socialIcons{
+        display: flex;
+        align-items: center;
+        margin-left: 1rem;
+    }
+    .socialIcons a{
+        text-decoration: none;
+        color: black;
+       
+    }
+    .createPost{ 
+        width: 600px;
+        padding: 1rem;
+    }
+    .createPost label{
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+    .des{
+        width: 100%;
+        height: 40px;
+        border-radius: 25px;
+        margin: 1rem 0;
+        padding-left: 1rem;
+    }
+    .newButton{
+        display: flex;
+        width: 500px;
+        justify-content: center;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .newButton{
+        padding: 0.8rem 2rem;
+        background-color: greenyellow;
+        border-radius: 1.6rem;
+        margin: 1rem 0;
+    }
+    .commentAdd{
+        width: 100%;
+        height: 3rem ;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    .commentAdd form{
+        display: flex;
+
+    }
+    .commentAdd input{
+        width: 90%;
+        border: 1px black solid;
+        outline: none;
+        padding: 0.3rem 1rem;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        background-color: aliceblue;
+    }
+    .commentAdd button{
+        width: 20%;
+        border: 1px black solid;
+        outline: none;
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        background-color: aliceblue;
+        padding-right: 1rem;
+    }
+    .comment{
+        width: 100%;
+        min-height: 50px;
+        padding: 0.4rem 0;
+        display: flex   ;
+    }
+    .comment .img{
+        width: 50px;
+        height: 40px;
+        border-radius: 25px;
+        background-color: aquamarine;
+        margin-left: 1rem;
+    }
+    .comntSec{
+        width: 100%;
+        position: relative;
+        top: 0;
+        margin-left: 1rem;
+    }
+    .authorName{
+        font-size: 0.8rem;
+        position: absolute;
+        top: 4px;
+    }
+    .authorComment{
+        font-size: 1rem;
+        font-weight: 500;
+        position: absolute;
+        bottom: 2px;
+    }
+    #dltBtn{
+        color: red;
+        border: none;
+        font-size: 1.2rem;
+        background-color: transparent;
+        margin-right: 1rem;
+    }
+    #columnNav{
+        display: flex!important;
+        flex-direction: column!important;
+    }
+    .navi{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        margin-top: 4rem;
+        margin-left: 1rem;
+    }
+    .navi li i{
+        font-size: 1.5rem;
+        margin-right: 1.5rem;
+    }
+    .navi li{
+        list-style-type: none;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .navi li a{
+        text-decoration: none;
+        color: white;
+    }
+    #sideNav{
+        height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+    .frndName{
+        font-size: 0.9rem;
+    }
+</style>
+<body>
+    <div class=" row d-flex">
+        <div id="sideNav" class=" col-md-3    bg-dark text-light">
+            <div class="navi">
+                <ul>
+                    <li><a href="/posts"><i class="fa-brands fa-instagram"></i>  Feed</a></li>
+                    <li><a href=""><i class="fa-solid fa-user-group"></i>  Friends</a></li>
+                    <li><a href=""><i class="fa-regular fa-calendar"></i>  Event</a></li>
+                    <li><a href=""><i class="fa-solid fa-film"></i>  Reels</a></li>
+                    <li><a href=""><i class="fa-brands fa-usps"></i> Posts</a></li>
+                    <li><a href="/profile"><i class="fa-regular fa-user"></i>  Profile</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6 p-1 flex-grow-1">
+           <div class="posts">
+                
+               
+                <% for(post of allPost) { %>
+
+                    <div class="post">
+                        <div class="postHead">
+                            <div class="img" style="
+                            background-image: url(<%=post.owner.profilePic%>);
+                            background-position: center;
+                            background-size: cover;
+                            "></div>
+                            
+                            <div class="names">
+                                <span class="postName"><%=post.owner.name%></span><br>
+                                <span class="postusername">@<%=post.owner.username%></span>
+                            </div>
+                            <a id="msg" href="/posts/<%=post._id%>"><i class="fa-solid fa-rectangle-list"></i></a>
+                        </div>
+                        <div class="postDes">
+                            <p><%=post.description%></p>
+                        </div>
+                        <div class="postImg">
+                            <img src="<%=post.image.url%>" alt="" >
+                        </div>
+                        <div class="postEngage">
+                            <div class="socialIcons">
+                                <form action="/posts/<%=post._id%>/like" method="POST">
+                                   <button><i  class="fa-solid fa-heart"></i></button>
+                                </form>
+                                <a href=""><i class="fa-solid fa-comment"></i> <%= Object.keys(post.comments).length %></a>
+                                <a href=""><i class="fa-solid fa-share"></i></a>
+                            </div>
+                            <p><%= post.createdAt.toString().split(" ")[4] %></p>
+
+                        </div>
+                        <div class="commentAdd">
+                            <form action="/posts/<%=post._id%>/comments" method="POST">
+                                <input name="comment[comment]" type="text" placeholder="Write your comment">
+                                <button>Post</button>
+                            </form>
+                        </div>
+                        <div class="showComments">
+                                
+                            <% for(var i = 0; i < 2 && i < post.comments.length; i++){ %>
+                                <div class="comment">
+                                <div class="img"
+                                    style="
+                                    background-image: url(<%=post.owner.profilePic%>);
+                                    background-position: center;
+                                    background-size: contain;
+                                "></div>
+                                <div class="comntSec">
+                                    <span class="authorName"></span><br>
+                                    <span class="authorComment"><%= post.comments[i].comment %></span>
+                                </div>
+                                
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                <%}%>
+            </div>
+        </div>
+        <div id="sideNav" class="col-md-3 p-3 flex-fill bg-dark text-light">
+            <span class="p-3  mt-4">Friends</span>
+            <% for(user of allUsers) { %>
+                <a class="postHead" href="/profile/<%=user._id%>">
+                    <div class="img" style="
+                    background-image: url(<%=user.profilePic%>);
+                    background-position: center;
+                    background-size: cover;
+                    width: 30px;
+                    height: 30px;
+                    "></div>
+                    <div class="names">
+                    <span class="frndName"><%=user.name%></span><br>
+                    </div>
+                    <!-- <a id="msg" href="/posts/<%=post._id%>">Follow</a> -->
+                </a>
+            <% } %>
+        </div>
+      </div>
+    <script>
+        let likeCount = 0;
+        const likeBtn = document.getElementById('like-btn');
+        const likeCountElem = document.getElementById('like-count');
+
+        likeBtn.addEventListener('click', () => {
+            if (likeCount % 2 === 0) {
+                likeCount++;
+                likeCountElem.textContent = `${likeCount} Likes`;
+                likeBtn.textContent = 'Dislike';
+                console.log(likeCount);
+            } else {
+                likeCount--;
+                likeCountElem.textContent = `${likeCount} Likes`;
+                likeBtn.textContent = 'Like';
+                console.log(likeCount);
+            }
+        });
+    </script>
+</body>
