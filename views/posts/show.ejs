@@ -259,7 +259,7 @@
                         </form>
                     </div>
                 <%}%>
-                <a class="socialIcon"  id="like-btn" href=""><i  class="fa-solid fa-heart "></i>  <%=postData.likes%></a>
+                <a class="socialIcon"  id="like-btn" href=""><i  class="fa-solid fa-heart "></i>  <%=Object.keys(postData.likes).length%>%></a>
                 <a class="socialIcon" href=""><i class="fa-solid fa-comment "></i> <%= Object.keys(postData.comments).length %></a>
                 <a class="socialIcon" href=""><i class="fa-solid fa-share "></i></a>
                 <%if(!currUser){%>

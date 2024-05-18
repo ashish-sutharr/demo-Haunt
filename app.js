@@ -14,6 +14,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const Post =  require("./models/post.js")
 const User = require("./models/user.js")
+const Like = require("./models/like.js")
 
 const postsRouter = require("./routes/post.js")
 const commentsRouter = require("./routes/comment.js")
@@ -87,11 +88,16 @@ app.post("/posts/:id/like", isLoggedIn, async (req, res) =>{
   let {id} = req.params;
   const postData = await Post.findById(id)
 
-  postData.likes = req.user._id;
-  console.log(postData);
+  let newLike = new Like;
+  newLike.author = req.user._id;
+  postData.likes.push(newLike)
+  
+  await newLike.save();
   await postData.save();
+  console.log(postData);
   res.redirect("/posts")
 })
+
 
 
 

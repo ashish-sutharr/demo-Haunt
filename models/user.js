@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const passportLocalMongoose = require("passport-local-mongoose")
 const Post = require("./post")
+const Following = require("./following")
+const Follower = require("./follower")
 
 const userSchema =  new Schema({
     name: {
@@ -31,6 +33,20 @@ const userSchema =  new Schema({
           ref: "Post"
         }
       ],
+    following: [
+        {
+            type: Schema.Types.ObjectId,
+            unique: true,
+            ref: "Following"
+        }
+    ],
+    follower: [
+        {
+            type: Schema.Types.ObjectId,
+            unique: true,
+            ref: "Follower"
+        }
+    ]
     
 })
 

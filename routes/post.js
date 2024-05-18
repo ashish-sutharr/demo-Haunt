@@ -19,6 +19,11 @@ router.get("/", async(req, res, next) =>{
       path: "author"
     }
     })
+    .populate({path: "likes",
+     populate: {
+      path: "author"
+    }
+    })
     .populate("owner")
     const allUsers = await User.find({})
     let commentCount = 0;

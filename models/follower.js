@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let likeSchema = new Schema({
-    author: {
+let followerSchema = new Schema({
+    followerUser: {
         type: Schema.Types.ObjectId,
+        unique: true,
         ref: "User"
     },
     createdAt:{
@@ -12,4 +13,4 @@ let likeSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model("Like", likeSchema)
+module.exports = mongoose.model("Follower", followerSchema)

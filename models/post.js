@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Comment = require("./comment.js")
-// const Review = require("./review.js")
+const Like = require("./like.js")
 
 let postSchema = new Schema({
     owner : {
@@ -16,7 +16,7 @@ let postSchema = new Schema({
     likes : [
       {
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "Like"
       }
     ],
     comments: [

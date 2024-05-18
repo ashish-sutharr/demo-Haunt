@@ -36,6 +36,7 @@
     }
     .postHead .names{
         margin-left: 0.7rem;
+        color: black;
     }
     .postHead .postName{
         font-weight: 500;
@@ -222,6 +223,7 @@
     }
     .frndName{
         font-size: 0.9rem;
+        color: white;
     }
 </style>
 <body>
@@ -230,7 +232,7 @@
             <div class="navi">
                 <ul>
                     <li><a href="/posts"><i class="fa-brands fa-instagram"></i>  Feed</a></li>
-                    <li><a href=""><i class="fa-solid fa-user-group"></i>  Friends</a></li>
+                    <li><a href="/profile/followings"><i class="fa-solid fa-user-group"></i>  Friends</a></li>
                     <li><a href=""><i class="fa-regular fa-calendar"></i>  Event</a></li>
                     <li><a href=""><i class="fa-solid fa-film"></i>  Reels</a></li>
                     <li><a href=""><i class="fa-brands fa-usps"></i> Posts</a></li>
@@ -253,7 +255,7 @@
                             "></div>
                             
                             <div class="names">
-                                <span class="postName"><%=post.owner.name%></span><br>
+                                <span class="postName"><%= post.owner.name %></span><br>
                                 <span class="postusername">@<%=post.owner.username%></span>
                             </div>
                             <a id="msg" href="/posts/<%=post._id%>"><i class="fa-solid fa-rectangle-list"></i></a>
@@ -268,6 +270,7 @@
                             <div class="socialIcons">
                                 <form action="/posts/<%=post._id%>/like" method="POST">
                                    <button><i  class="fa-solid fa-heart"></i></button>
+                                   
                                 </form>
                                 <a href=""><i class="fa-solid fa-comment"></i> <%= Object.keys(post.comments).length %></a>
                                 <a href=""><i class="fa-solid fa-share"></i></a>
